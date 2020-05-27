@@ -1,0 +1,557 @@
+// Переменная шрифта
+$fontFamily: "Lato";
+// Обнуление подключаем
+@import "_null.scss";
+// Миксин на шрифт
+@import "_textmixin.scss";
+// Шрифты подключаем
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap");
+// Wrap
+.wrapper {
+   min-height: 100%; // чтобы была на всю высоту экрана
+   overflow: hidden; // чтобы не чего не вылезло за наш экран
+   display: flex;
+   flex-direction: column;
+}
+// Main container
+.container {
+   max-width: 1130px;
+   padding: 0px 15px;
+   margin: 0 auto;
+}
+.content {
+   flex: 1 1 auto; // разрешаем увеличиваться для того что бы прижал футер
+}
+// Для фулскрина
+.full-screen {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+   display: flex;
+   flex-direction: column;
+}
+.main-screen {
+   flex: 1 0 100%;
+   position: relative;
+   &__bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+   }
+}
+.ibg {
+   background-position: center;
+   background-size: cover;
+   background-repeat: no-repeat;
+   position: relative;
+}
+.ibg img {
+   width: 0;
+   height: 0;
+   position: absolute;
+   top: 0;
+   left: 0;
+   opacity: 0;
+   visibility: hidden;
+}
+// ==============================================
+.header {
+   position: absolute;
+   width: 100%;
+   z-index: 50;
+   top: 35px;
+   &__row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 85px;
+   }
+   &__list {
+      display: flex;
+      li {
+         &:nth-child(2) {
+            padding: 0px 110px 0px 80px;
+         }
+         &:nth-child(3) {
+            padding: 0px 110px 0px 80px;
+         }
+      }
+      a {
+         color: #4d4959;
+         text-transform: uppercase;
+         font-weight: 700;
+         letter-spacing: 2.6px;
+         @include adaptiv-font(20, 22);
+         opacity: 0.7;
+         transition: opacity 0.2s linear 0.1s;
+         &:hover {
+            opacity: 1;
+         }
+      }
+   }
+
+   &__logo {
+      display: flex;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translate(-50%, -10%);
+      transition: transform .3s linear .2s;
+   }
+   &__toggle {
+      display: none;
+   }
+   @media (max-width: 780px) {
+      &__menu {
+         position: fixed;
+         width: 100%;
+         height: 100%;
+         top: 0;
+         left: 0;
+         background: #4d4959;
+         overflow: auto;
+         transform: translate(0, -100%);
+         transition: transform 0.3s linear 0.2s;
+         &.active {
+            transform: translate(0, 0);
+         }
+      }
+      &__list {
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         padding: 180px 0px 0px 0px;
+         li {
+            padding: 0px 0px 35px 0px !important;
+         }
+         a {
+            color: white;
+         }
+      }
+      .header__toggle {
+         display: block;
+         color: #4d4959;
+         font-size: 40px;
+         z-index: 50;
+         position: fixed;
+         top: 20px;
+         left: 20px;
+         transition: color 0.3s ease 0.3s;
+         &.active {
+            color: white;
+         }
+      }
+   }
+}
+@media (max-width: 780px) {
+   .move {
+      transform: translate(-50%, -30%); // поднимаем логотип
+   }
+}
+@media (max-width: 780px) {
+   body.lock {
+      overflow: hidden; // запрет скрола при открытом меню
+   }
+}
+.generation {
+   background: #f7f7f7;
+   padding: 100px 0px 100px 0px;
+   @media (max-width: 780px) {
+      padding: 30px 0px 80px 0px;
+   }
+   @media (max-width: 550px) {
+      padding: 20px 0px 40px 0px;
+   }
+}
+.block {
+   text-align: center;
+   justify-content: center;
+   &__icon {
+      margin: 70px 0px 33px 0px;
+   }
+   @media (max-width: 550px) {
+      &__icon {
+         margin: 40px 0px 33px 0px;
+      }
+   }
+
+   &__title {
+      @include adaptiv-font(18, 14);
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #353738;
+      margin: 0px 0px 33px 0px;
+      letter-spacing: 3.2px;
+      line-height: 24px;
+   }
+
+   &__text {
+      @include adaptiv-font(18, 14);
+      color: #848789;
+      line-height: 34px;
+   }
+}
+.brands {
+   &__row {
+      display: flex;
+   }
+   &__colum {
+      flex: 0 1 33.333%;
+      &_big {
+         flex: 0 1 66.667%;
+      }
+   }
+
+   &__item {
+      position: relative;
+      display: block;
+      height: 100%;
+   }
+
+   &__content {
+      padding: 0px 45px 50px 45px;
+      position: relative;
+   }
+
+   &__image {
+      padding: 0px 0px 37.51% 0px;
+      object-fit: cover;
+   }
+   @media (max-width: 780px) {
+      &__row {
+         display: flex;
+         flex-direction: column;
+      }
+      &__content {
+         padding: 0px 15px 50px 15px;
+      }
+      &__item {
+         height: auto;
+         padding: 0px 0px 70% 0px;
+      }
+   }
+}
+.item {
+   display: block;
+   position: relative;
+   height: 100%;
+   &__logo {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+      background-color: rgba($color: #000000, $alpha: 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s linear 0.2s;
+      span {
+         @include adaptiv-font(16, 12);
+         font-weight: 700;
+         letter-spacing: 2.8px;
+         text-transform: uppercase;
+         color: #fff;
+         margin: 0 auto;
+         margin: 10px 0px 0px 0px;
+      }
+   }
+   &__image {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      object-fit: cover;
+   }
+   &:hover {
+      .item__logo {
+         visibility: visible;
+         opacity: 1;
+      }
+   }
+}
+.line {
+   @include adaptiv-font(16, 14);
+   line-height: 30px;
+   &:after {
+      content: "";
+      display: block;
+      width: 50px;
+      height: 1px;
+      margin: 30px auto 0px auto;
+      background: #848789;
+   }
+}
+.brands__colum_middll {
+   flex: 0 1 33.333%;
+}
+.socialNetwork {
+   &__row {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+   }
+
+   &__body {
+      max-width: 1050px;
+      height: auto;
+      position: relative;
+      transition: 0.3s linear 0.2s;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0px 15px;
+   }
+
+   &__Carusel {
+      width: 100%;
+      height: 100%;
+      display: none;
+   }
+}
+.active {
+   display: block;
+}
+.Carusel {
+   &__logo {
+      display: block;
+      padding: 120px 0px 35px 0px;
+      @media (max-width: 780px) {
+         padding: 60px 0px 35px 0px;
+      }
+   }
+
+   &__title {
+      display: block;
+      @include adaptiv-font(24, 20);
+      padding: 0px 0px 30px 0px;
+      letter-spacing: 1.8px;
+      color: #353738;
+   }
+   &__title span {
+      color: #848789;
+      @include adaptiv-font(22, 18);
+   }
+
+   &__text {
+      display: block;
+      line-height: 35px;
+      @include adaptiv-font(24, 20);
+      color: #848789;
+      font-style: italic;
+   }
+}
+.dots-wrapper {
+   display: flex;
+   justify-content: center;
+   margin: 50px 0px 70px 0px;
+   @media (max-width: 780px) {
+      margin: 30px 0px 70px 0px;
+   }
+}
+.dot.active {
+   background-color: #000;
+}
+.dots-wrapper span {
+   width: 15px;
+   height: 15px;
+   border-radius: 50%;
+   background-color: gray;
+   margin-right: 10px;
+   cursor: pointer;
+}
+
+.dots-wrapper span:last-child {
+   margin-right: 0;
+}
+.shop {
+   &__body {
+      display: flex;
+   }
+
+   &__column {
+      flex: 0 1 16.666%;
+      &_big {
+         flex: 0 1 33.333%;
+      }
+   }
+
+   &__footer {
+      width: 100%;
+      height: 200px;
+      background-color: #282f35;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+
+   &__bth {
+      border: 1px solid #94979a;
+      color: white;
+      width: 300px;
+      height: 50px;
+      display: block;
+      text-align: center;
+      line-height: 50px;
+      @include adaptiv-font(14, 16);
+      letter-spacing: 1.8px;
+   }
+   @media (max-width: 780px) {
+      &__body {
+         flex-wrap: wrap;
+      }
+      &__column {
+         flex: 0 1 50%;
+         &:first-child {
+            flex: 0 1 100%;
+         }
+         &:last-child {
+            flex: 0 1 100%;
+         }
+      }
+   }
+}
+.block-shop {
+   height: 100%;
+   &__row {
+      display: flex;
+   }
+   &__column {
+      flex: 0 1 50%;
+   }
+   &__item {
+      height: auto;
+      padding: 0px 0px 50% 0px;
+      &_big {
+         padding: 0px 0px 200.5% 0px;
+      }
+      &_little {
+         padding: 0px 0px 100% 0px;
+      }
+   }
+}
+.form {
+   &__body {
+      max-width: 575px;
+      margin: 0 auto;
+      padding: 100px 20px 100px 20px;
+   }
+
+   &__colum {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+   }
+
+   &__logo {
+      margin: 0px 0px 40px 0px;
+   }
+
+   &__title {
+      @include adaptiv-font(24, 18);
+      font-style: italic;
+      color: #848789;
+      margin: 0px 0px 35px 0px;
+   }
+
+   &__forma {
+      display: flex;
+   }
+
+   &__inp {
+      border: 1px solid #848789;
+      margin: 0px 8px 0px 0px;
+      color: #848789;
+      padding: 0px 0px 0px 30px;
+      font-style: italic;
+      &:focus {
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+   }
+
+   &__btn {
+      width: 125px;
+      height: 65px;
+      background: #64c29e;
+      color: #fff;
+      @include adaptiv-font(24, 18);
+      transition: box-shadow 0.4s ease 0.3s;
+      &:hover {
+         box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+      }
+   }
+}
+
+.footer {
+   background: #f7f7f7;
+   &__body {
+      display: flex;
+      align-items: center;
+      padding: 100px 15px 100px 15px;
+      max-width: 1130px;
+      margin: 0 auto;
+   }
+
+   &__colum {
+      flex: 0 1 33.333%;
+   }
+
+   &__info p {
+      @include adaptiv-font(14, 13);
+      color: #848789;
+      margin: 0px 0px 5px 0px;
+   }
+
+   &__socialNetwork {
+      display: flex;
+      justify-content: center;
+      a {
+         margin: 0px 8.5px;
+      }
+   }
+
+   &__link {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      span {
+         color: #848789;
+         margin: 0px 9px 0px 0px;
+         @include adaptiv-font(14, 13);
+      }
+   }
+   @media (max-width: 780px) {
+      &__body {
+         display: flex;
+         flex-direction: column;
+         text-align: center;
+         padding: 40px 15px 50px 15px;
+      }
+      &__colum {
+         flex: 0 1 50%;
+      }
+      &__info {
+         margin: 0px 0px 30px 0px;
+         line-height: 22px;
+      }
+      &__socialNetwork {
+         a {
+            margin: 0px 25px;
+         }
+      }
+      &__link {
+         span {
+            margin: 50px 15px 0px 0px;
+         }
+      }
+   }
+}
